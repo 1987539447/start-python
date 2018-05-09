@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+# FileName:multi_processing.py
+# -*- coding: utf-8 -*-
+""" multiprocessing 实现多进程"""
+
+
+from multiprocessing import Process
+import os
+
+
+# 子进程运行的代码
+def run_proc(name):
+    print('Run child process %s(%s)' % (name, os.getpid()))
+
+
+if __name__ == '__main__':
+    print('Parent process %s' % os.getpid())
+    p = Process(target=run_proc, args=('test',))
+    print('child process will start...')
+    p.start()
+    p.join()
+    print('Child process end')
+
